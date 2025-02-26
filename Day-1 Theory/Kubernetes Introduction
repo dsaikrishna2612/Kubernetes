@@ -1,1 +1,42 @@
+Kubernetes is Orchestration open source platform  #[orchestration=automation]
+Alternate of kubernetes is Openshift
+           openshift is developed by RedHat
+           Kubernetes is developed by google and it is written on " go language"
 
+Docker is a Containerization
+Kubernetes is a Orchestration , >> it creates containers to deploy application with a with an additional layer on containers known as pods
+
+POD= it is a wrapper on top of the container (abstraction layer of container)
+
+one pod can contain one container or many containers
+these pods are deployed in nodes [nodes= server (ec2)]
+
+
+--------------Kubernetes Types---------------
+>> Cloud Managed Kubernetes 
+           EKS : Elastic Kubernetes Service -AWS
+           AKS : Azure Kubernetes Service  - Azure
+           GKE : Google Kubernetes Engine  - GCP
+     Control Plane is managed by Cloud Operators
+     Worker Nodes are managed by the user himself
+>> KOPS
+      User managed kubernetes on cloud
+      user is only responsible for both control plane and worker nodes
+>> KUBEDM
+     Suitable for on-prem Process
+
+
+
+------------------Kubernetes Nodes-------------
+Control Plane or Master Node    >> Controls worker node
+Worker Node            >> used to deploy pods
+
+
+------------Kubernetes Components---------------------
+>> Client : who interact to kubernetes cluster   [kubectl comand]
+
+>> API Server  : when we interact with kubernetes cluster using "kubectl" command-line interface, we are actually communicating with the master api server component
+                  API Server is the only kubernetes component that connects to "etcd" 
+                   all other components mustgo through the API Server to work with cluster state
+
+>> etcd :  it reliably stores the configuration data of the kubernetes cluster

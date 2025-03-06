@@ -39,4 +39,26 @@ Worker Node            >> used to deploy pods
                   API Server is the only kubernetes component that connects to "etcd" 
                    all other components mustgo through the API Server to work with cluster state
 
->> etcd :  it reliably stores the configuration data of the kubernetes cluster
+>> etcd :  it reliably stores the configuration data of the kubernetes cluster, representing the stae of the cluster/ what nodes exist in the cluster/ what pods should be running at any given point of time
+
+>> scheduler :  schedules the pod on which node it should run as per the resource available
+               scheduler watches for unscheduled pods and binds them to nodes via/binding pod subresource API , according to the availability of requested resources, quality of service, requirements affinity and anti-affinity specifications and other constraints
+               once the pod has assigned to node, the regular behaviour of the "kubelet" is triggered and the pod and its containers are created
+
+>> kubelet : main component of worker node, it will interact with master node API Server and container run time, as per the API request it will run container runtime to create pod
+
+>> controller : Basically a controller watches the state of the cluster through the API server , when it gets notified , it makes the necessary changes attempting to move the current state towards the desired state
+
+>> kube-proxy : it is a network proxy that runs on each node in a kubernetes cluster
+                it is responsible for maintaining network connectivity between services and pods.
+                kube-proxy do this by translating service definations into actionable networking rules
+
+>> kubernetes cluster : cluster is combination of master and node
+                        it is a set of nodes that run containerized applications, managed by kubernetes for automated deployment, scaling and operation
+
+ NODE : it is a machine
+ POD : it is a group of containers
+
+
+
+

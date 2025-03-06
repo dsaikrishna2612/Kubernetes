@@ -1,1 +1,28 @@
+Argo CD is a Kubernetes-native continuous deployment (CD) tool. 
+Unlike external CD tools that only enable push-based deployments, Argo CD can pull updated code from Git repositories and deploy it directly to Kubernetes resources.
+
+GitOps is a way of implementing Continuous Deployment for cloud-native applications. It focuses on a developer-centric experience when operating infrastructure, by using tools developers are already familiar with, including Git and Continuous Deployment tools.
+
+The core idea of GitOps is to have a Git repository that always contains declarative descriptions of the infrastructure currently desired in the production environment and an automated process to make the production environment match the described state in the repository. 
+If you want to deploy a new application or update an existing one, you only need to update the repository — the automated process handles everything else. 
+It’s like having cruise control for managing your applications in production.
+
+for more info https://medium.com/@veerababu.narni232/a-complete-overview-of-argocd-with-a-practical-example-f4a9a8488cf9
+
+
+----------------installation process---------------------
+         #argocd is installed in the Kubernetes cluster
+>>1. kubectl create namespace argocd
+>>2. kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+         #kubectl get pods -n argocd   #managed pods by the argocd not application pods
+         #kubectl get svc -n argocd
+>>3. kubectl edit svc argocd-server -n argocd  #enable Node Port [remove ClusterIP and Add NodePort]
+         #enable http :80 inbound rule to any of the workernode
+         #take publicip of any one of the worker node server  paste in searchengine <publicip:nodeportnumber>
+                   username:admin
+                   password: follow below
+>>4. kubectl get secret argocd-initial-admin-secret -n argocd -o yaml
+>>5. echo "secret value" | base64 --decode          #to decode secret value to password we can use thi also "https://www.base64decode.org/"
+
+
 

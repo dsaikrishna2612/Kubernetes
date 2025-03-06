@@ -1,0 +1,22 @@
+kubectl get nodes                      #to get the list of nodes
+kubectl get nodes -o wide              #to get detailed info of nodes
+
+kubectl get pods                       #to get list of pods
+kubectl get pods -o wide               #to get detailed info of pods, which pod is running on which node
+
+kubectl get svc                        #to get the service details of kubernetes
+
+kubectl top nodes                      #to get info of memory and cpu of nodes
+kubectl top pods                       #to get info of memory and cpu of pods
+
+kubectl get hpa                        #to get details of autoscaling
+
+kubectl describe pod <podname>         #to get full details of the required pod >> if pod is in pending state first use this command
+kubectl describe node <nodename>       #to get full details of the required node 
+
+kubectl get ns                         #to get list of namespaces
+kubectl create ns <namespace name>     #to create name space name
+
+kubectl apply -f <name of the yamlfile>  #to create pods
+kubectl apply -f <name of the yamlfile> -n <required namespace> #to create pods on the required namespace
+  

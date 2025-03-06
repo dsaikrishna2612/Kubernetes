@@ -1,0 +1,6 @@
+>>1. create kubernetes cluster
+>>2. install ingress controller
+>>3. kubectl get ns
+>>4. kubectl get all -n <ingress-nginx  namespace of ingress controller>
+>>5. create pods with required yaml files
+>>6. for laod balancer use kubectl get ingress

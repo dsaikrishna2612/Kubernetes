@@ -17,6 +17,7 @@ kubectl describe node <nodename>       #to get full details of the required node
 kubectl get ns                         #to get list of namespaces
 kubectl create ns <namespace name>     #to create name space name
 
-kubectl apply -f <name of the yamlfile>  #to create pods
+kubectl apply -f <name of the yamlfile>                         #to create pods
 kubectl apply -f <name of the yamlfile> -n <required namespace> #to create pods on the required namespace
+                                        # without specifying -n we can mention namespace separetely at namespace.yml
   

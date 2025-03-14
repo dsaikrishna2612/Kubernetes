@@ -19,19 +19,53 @@ pink=labelvalue
 
 
 
->> Deamonset : no selection of nodes, and replica concept pod number depends on node number 
+>> Daemonset : no selection of nodes, and replica concept pod number depends on node number 
                pods will create based on number of nodes
+production applications are not deployed using this daemonset , preferred for configuration files
+
+>> Node affinity preferred [preferred=prority] : preferredDuringSchedulingIgnoredDuringExecution
+  affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: size
+                operator: In
+                values:
+                - medium
+          - weight: 50
+            preference:
+              matchExpressions:
+              - key: size
+                operator: In
+                values:
+                - small
 
 
->> Node affinity preferred [preferred=prority] : preferred during scheduling ignored during execution
 
 
+>> Node affinity required [required=mandatory] : required during scheduling ignored during execution     ///same like node selector but it is an advanced one
+affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: size
+                operator: In
+                values:
+                - medium
+          - weight: 50
+            preference:
+              matchExpressions:
+              - key: clr
+                operator: In
+                values:
+                - pink
 
 
-
->> Node affinity required [required=mandatory] : required during scheduling ignored during execution
-
-
+>> Taint and Tolerance : 
 
 
 

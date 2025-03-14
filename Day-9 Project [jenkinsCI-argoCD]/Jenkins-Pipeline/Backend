@@ -1,0 +1,56 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('Checkout from Git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/dsaikrishna2612/3tierapplication-kubernetes-argocd-jenkinsci.git'
+            }
+        }
+        stage("Docker Image Build") {
+            steps {
+                script {
+                    dir('backend') {
+                        sh 'docker system prune -f'
+                        sh 'docker container prune -f'
+                        sh 'docker build -t backend .'
+                    }
+                }
+            }
+        }
+        stage("ECR Image Pushing") {
+            steps {
+                script {
+                    sh '''
+                    aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 941377132483.dkr.ecr.ap-south-1.amazonaws.com
+                    docker tag frontend:latest 941377132483.dkr.ecr.ap-south-1.amazonaws.com/backend:${BUILD_NUMBER}
+                    docker push 941377132483.dkr.ecr.ap-south-1.amazonaws.com/backend:${BUILD_NUMBER}
+                    '''
+                }
+            }
+        }
+        // stage('Update Deployment file') {
+        //     environment {
+        //         GIT_REPO_NAME = "3tierapplication-kubernetes-argocd-jenkinsci"
+        //         GIT_USER_NAME = "dsaikrishna2612"
+        //     }
+        //     steps {
+        //         dir('kubernetes-files') {
+        //           withCredentials([usernamePassword(credentialsId: 'GITHUB_CREDENTIALS', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+        //                 sh '''
+        //                     git config user.email "dsaikrishna784@gmail.com"
+        //                     git config user.name "dsaikrishna2612"
+        //                     BUILD_NUMBER=${BUILD_NUMBER}
+        //                     echo $BUILD_NUMBER
+        //                     sed -i "s#image:.*#image: 941377132483.dkr.ecr.ap-south-1.amazonaws.com/frontend:$BUILD_NUMBER#g" frontend-deploy-service.yaml
+        //                     git add .
+        //                     git commit -m "Update deployment Image to version \${BUILD_NUMBER}"
+        //                     git push https://$GIT_USER:$GIT_PASS@github.com/$GIT_USER_NAME/$GIT_REPO_NAME.git HEAD:main
+        
+        //                 '''
+        //             }
+        //         }
+        //     }
+        // }
+    }
+}    

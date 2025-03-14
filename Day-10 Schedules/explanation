@@ -1,0 +1,39 @@
+pod schedule : default pod schedule is taken care by the scheduler as per resource availability
+
+>> Node Selector : it is the simplest form recommended form of node selection constraint
+---------------first label the node---------------------    
+#kubectl label node <nodename> <labelkey>=<labelvalue>        labelkey and label value can be of anything of our choice but it should match with the nodeselector section mentioned in the "yaml file"
+node selector section in the yaml file is mentioned under the specifications of container
+spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+      nodeSelector:
+        clr: pink
+clr= labelkey
+pink=labelvalue
+
+
+-------------------------unlabel the node---------------------------
+#kubectl label node <nodename> <labelkey>=<labelvalue>-
+
+
+
+>> Deamonset : no selection of nodes, and replica concept pod number depends on node number 
+               pods will create based on number of nodes
+
+
+>> Node affinity preferred [preferred=prority] : preferred during scheduling ignored during execution
+
+
+
+
+
+>> Node affinity required [required=mandatory] : required during scheduling ignored during execution
+
+
+
+
+
+
+                           

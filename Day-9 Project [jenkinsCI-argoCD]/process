@@ -54,6 +54,16 @@ eksctl create cluster --name saikrishna \
 
 
 
+#to run docker commands by jenkins job need to give permissions
+        add jenkins user to the docker group
+       >> usermod -aG docker jenkins
+       >> systemctl restart jenkins
+       >> systemctl restart docker
+
+
+
+
+backend env variable >> encode and upload
 
 
 

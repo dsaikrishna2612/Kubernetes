@@ -1,5 +1,6 @@
 pod schedule : default pod schedule is taken care by the scheduler as per resource availability
 
+===================================================================================================================================
 >> Node Selector : it is the simplest form recommended form of node selection constraint
 ---------------first label the node---------------------    
 #kubectl label node <nodename> <labelkey>=<labelvalue>        labelkey and label value can be of anything of our choice but it should match with the nodeselector section mentioned in the "yaml file"
@@ -18,11 +19,11 @@ pink=labelvalue
 #kubectl label node <nodename> <labelkey>=<labelvalue>-
 
 
-
+====================================================================================================================================
 >> Daemonset : no selection of nodes, and replica concept pod number depends on node number 
                pods will create based on number of nodes
 production applications are not deployed using this daemonset , preferred for configuration files
-
+================================================================================================================================
 >> Node affinity preferred [preferred=prority] : preferredDuringSchedulingIgnoredDuringExecution
   affinity:
         nodeAffinity:
@@ -64,9 +65,29 @@ affinity:
                 values:
                 - pink
 
-
+===========================================================================================================================================
 >> Taint and Tolerance : 
+taint is applied to a node to mark it as having some special property that ony certain pods can tolerate. if a node has a taint, the scheduler will not place a pod
+on that node unless the pod has matching tolerism.
+------------------Two Types-------------------
+           1>. NoSchedule
+           2>. NoExecutive
 
+
+Conditions:    <1>. Tainted node accepts only tolerate pod
+               <2>. tolerate pod can be scheduled on tainted or untainted node
+               <3>. untolerate pod schedules only on untainted pod
+
+
+
+#####------taint--------######
+kubectl taint nodes <node name> labelkey=labelvalue NoSchedule
+kubectl taint nodes <node name> labelkey=labelvalue NoExecute
+
+
+####-------untaint--------######
+kubectl taint nodes <node name> labelkey=labelvalue NoSchedule-
+kubectl taint nodes <node name> labelkey=labelvalue NoExecute-
 
 
 

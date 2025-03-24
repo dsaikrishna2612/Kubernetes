@@ -1,0 +1,22 @@
+kubernetes volumes...............
+< >. it is a directory containing data accessible to containers in a given pod 
+< >. smallest deployable unit in a kubernetes cluster
+< >. Within the Kubernetes container orchestration and management platform, provide a plugin mechanism that connects ephemeral containers with persistent data storage.
+< >. A Kubernetes volume persists [continuous] until its associated pod is deleted. 
+< >. When a pod with a unique identification is deleted, the volume associated with it is destroyed. 
+< >. If a pod is deleted but replaced with an identical pod, a new and identical volume is also created.
+
+
+
+
+By default volumes are not persistent [not permanent] , we can make it permanent by using volumes concept
+
+
+
+------------{EBS Elastic Block Store}---------------{EFS Elastic File System}
+
+Volumes= Static , Dynamic
+
+Static : host path and cloud path
+
+

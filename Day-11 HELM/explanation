@@ -1,0 +1,24 @@
+Helm is a tool that automates the creatioyn, packaging, configuration and deployment of kubernetes applications by combining our configuration files into a single reusable package
+
+
+---------------HELM Installation------------------
+https://github.com/helm/helm/releases
+
+wget https://get.helm.sh/helm-v3.14.0-linux-amd64.tar.gz
+
+tar -zxvf helm-v3.14.0-linux-amd64.tar.gz
+
+mv linux-amd64/helm /usr/local/bin/helm
+
+chmod 777 /usr/local/bin/helm  # give permissions 
+
+helm version 
+
+
+
+
+<1>. helm create <project name>
+<2>. helm install <release name> <chart name>   #to run helm
+<3>. helm upgrade <release name> <chart name>   #for any modifications in previous run
+<4>. helm delete <chart name>
+<5>. helm list -a
